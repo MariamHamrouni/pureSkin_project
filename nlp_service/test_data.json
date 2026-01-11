@@ -1,0 +1,26 @@
+[
+  {
+    "query_name": "Test Vitamin C (Drunk Elephant)",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Ferulic Acid, Sclerocarya Birrea Seed Oil, Sodium Hyaluronate",
+    "expected_dupe": "Drunk Elephant",
+    "category": "serum"
+  },
+  {
+    "query_name": "Test Hydration (Tatcha)",
+    "ingredients": "Aqua, Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate, Dimethicone, Propanediol, Glycerin, Diglycerin",
+    "expected_dupe": "Tatcha",
+    "category": "cream"
+  },
+  {
+    "query_name": "Test BHA Exfoliant (Paula's Choice)",
+    "ingredients": "Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 20, Camellia Oleifera Leaf Extract",
+    "expected_dupe": "Paula's Choice",
+    "category": "toner"
+  },
+  {
+    "query_name": "Test Glow Recipe (Watermelon)",
+    "ingredients": "Aqua, Citrullus Lanatus Fruit Extract, Glycerin, Niacinamide, Sodium Hyaluronate",
+    "expected_dupe": "Glow Recipe",
+    "category": "serum"
+  }
+]

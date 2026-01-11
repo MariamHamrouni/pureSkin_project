@@ -1,0 +1,62 @@
+{
+  "total_products": 8494,
+  "unique_brands": 304,
+  "price_stats": {
+    "mean": 51.65559387207031,
+    "median": 35.0,
+    "min": 3.0,
+    "max": 1900.0
+  },
+  "columns": [
+    "product_id",
+    "product_name",
+    "brand_name",
+    "ingredients",
+    "price_usd",
+    "rating",
+    "reviews",
+    "loves_count",
+    "size",
+    "primary_category",
+    "secondary_category",
+    "tertiary_category",
+    "new",
+    "out_of_stock",
+    "highlights"
+  ],
+  "categories": {
+    "primary_category": {
+      "Skincare": 2420,
+      "Makeup": 2369,
+      "Hair": 1464,
+      "Fragrance": 1432,
+      "Bath & Body": 405,
+      "Mini Size": 288,
+      "Men": 60,
+      "Tools & Brushes": 52,
+      "Gifts": 4
+    },
+    "secondary_category": {
+      "Women": 875,
+      "Hair Styling & Treatments": 757,
+      "Eye": 711,
+      "Face": 659,
+      "Moisturizers": 551,
+      "Value & Gift Sets": 498,
+      "Treatments": 466,
+      "Shampoo & Conditioner": 431,
+      "Lip": 411,
+      "Cleansers": 361,
+      "Candles & Home Scents": 263,
+      "Brushes & Applicators": 246,
+      "Body Moisturizers": 220,
+      "Mini Size": 187,
+      "Eye Care": 186,
+      "Masks": 166,
+      "Cheek": 165,
+      "Tools": 153,
+      "Makeup": 137,
+      "Men": 135
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-01-10 18:52:39",
+  "test_cases": 4,
+  "performance": {
+    "mrr": 0.25,
+    "accuracy": {
+      "top1": 25.0,
+      "top3": 25.0,
+      "top5": 25.0,
+      "top10": 25.0
+    },
+    "latency_ms": {
+      "mean": 35.23615000449354,
+      "std": 3.9742102621576736,
+      "p95": 38.78368501755176
+    },
+    "similarity_mean": 0.881
+  },
+  "coverage": {
+    "not_found": 3,
+    "failed_searches": 0,
+    "success_rate": 25.0
+  },
+  "overall_score": 0.4603333333333333
+}

@@ -1,0 +1,53 @@
+/* frontend/src/styles/main.css */
+:root{
+  --primary: #2A9D8F;       /* Vert Océan */
+  --secondary: #264653;     /* Bleu Foncé */
+  --accent: #E9C46A;        /* Doré Doux */
+  --bg-light: #F8F9FA;      /* Fond très clair */
+  --text-dark: #2D3436;
+  --white: #FFFFFF;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; padding: 0; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Boutons Globaux */
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+/* Cartes */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
