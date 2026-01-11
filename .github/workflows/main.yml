@@ -1,0 +1,47 @@
+name: Deploy to Azure App Service via Docker
+
+on:
+  push:
+    branches:
+      - main  # Déploiement sur la branche 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -t myapp .
+        docker tag myapp:latest <docker-registry-name>.azurecr.io/myapp:latest
+
+    - name: Push Docker image to Azure Container Registry
+      run: |
+        docker push <docker-registry-name>.azurecr.io/myapp:latest
+
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: <nom-de-ton-app>
+        slot-name: production
+        images: <docker-registry-name>.azurecr.io/myapp:latest
