@@ -32,8 +32,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t myapp -f ./nlp_service/Dockerfile .  # Path to Dockerfile in nlp_service
-        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your ACR name here
+        cd nlp_service  # Make sure we're in the correct directory
+        docker build -t myapp -f Dockerfile .  # Path to Dockerfile in the nlp_service folder
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest
 
     - name: Push Docker image to Azure Container Registry
       run: |
