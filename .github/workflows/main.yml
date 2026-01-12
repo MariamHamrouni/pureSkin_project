@@ -66,3 +66,4 @@ jobs:
         app-name: MonAppServiceName  # Your Azure Web App name
         slot-name: production  # Assuming production deployment slot
         images: monacr123.azurecr.io/myapp:latest  # Use the ACR image name for deployment
+
