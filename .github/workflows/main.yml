@@ -41,7 +41,7 @@ jobs:
       with:
         login-server: monacr123.azurecr.io  # Your ACR name
         username: ${{ secrets.AZURE_USERNAME }}  # If you're using ACR username/password
-        password: ${{ secrets.AZURE_PASSWORD }}
+        password: ${{ secrets.AZURE_PASSWORD }}  # If you're using ACR username/password
 
     - name: Build Docker image
       run: |
