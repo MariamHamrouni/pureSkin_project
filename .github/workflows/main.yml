@@ -17,7 +17,7 @@ jobs:
       uses: docker/setup-buildx-action@v1
 
     - name: Cache Docker layers
-      uses: actions/cache@v3  # Updated to v3
+      uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -40,14 +40,14 @@ jobs:
     - name: Log in to Azure Container Registry
       uses: azure/docker-login@v1
       with:
-        login-server: monacr123.azurecr.io  # Your ACR login server
-        username: ${{ secrets.AZURE_USERNAME }}  # ACR Username (login server)
-        password: ${{ secrets.AZURE_PASSWORD }}  # ACR Password (Access key)
+        login-server: monacr123.azurecr.io  # ACR login server (replace with your ACR name)
+        username: ${{ secrets.AZURE_USERNAME }}  # ACR username (login server URL)
+        password: ${{ secrets.AZURE_PASSWORD }}  # ACR password (from Access keys)
 
     - name: Build Docker image
       run: |
         docker build -f ./nlp_service/Dockerfile -t myapp .
-        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your ACR name here
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Replace with your ACR name
 
     - name: Push Docker image to Azure Container Registry
       run: |
