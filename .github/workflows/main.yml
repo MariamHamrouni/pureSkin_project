@@ -31,12 +31,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     # Azure login step for ACR
-    - name: Log in to Azure Container Registry
-      uses: azure/docker-login@v1
+    - name: Log in to Azure
+      uses: azure/login@v1
       with:
-        login-server: monacr123.azurecr.io  # Your Azure Container Registry name
-        username: ${{ secrets.AZURE_USERNAME }}
-        password: ${{ secrets.AZURE_PASSWORD }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
 
     - name: Build Docker image
       run: |
