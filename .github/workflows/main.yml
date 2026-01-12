@@ -30,11 +30,18 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    # Azure login step for ACR
+    - name: Log in to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: monacr123.azurecr.io  # Your Azure Container Registry name
+        username: ${{ secrets.AZURE_USERNAME }}
+        password: ${{ secrets.AZURE_PASSWORD }}
+
     - name: Build Docker image
       run: |
-        docker build -f ./nlp_service/Dockerfile -t myapp .  # Use the explicit path for Dockerfile
-        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your Azure Container Registry name
-
+        docker build -f ./nlp_service/Dockerfile -t myapp .
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your ACR name here
 
     - name: Push Docker image to Azure Container Registry
       run: |
@@ -43,6 +50,6 @@ jobs:
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: MonAppServiceName  # Replace with your Azure Web App name
+        app-name: MonAppServiceName  # Your Azure Web App name here
         slot-name: production  # Assuming production deployment slot
         images: monacr123.azurecr.io/myapp:latest  # Use your ACR image name
