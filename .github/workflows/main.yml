@@ -1,0 +1,48 @@
+name: Deploy to Azure App Service via Docker
+
+on:
+  push:
+    branches:
+      - main  # Deploy to 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Cache Docker layers
+      uses: actions/cache@v3  # Updated to v3
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -f ./nlp_service/Dockerfile -t myapp .  # Use the explicit path for Dockerfile
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your Azure Container Registry name
+
+
+    - name: Push Docker image to Azure Container Registry
+      run: |
+        docker push monacr123.azurecr.io/myapp:latest  # Push to your ACR
+
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: MonAppServiceName  # Replace with your Azure Web App name
+        slot-name: production  # Assuming production deployment slot
+        images: monacr123.azurecr.io/myapp:latest  # Use your ACR image name
