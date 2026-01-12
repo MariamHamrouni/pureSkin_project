@@ -86,8 +86,8 @@ export const findDupes = async (ingredients, type = null, price = 0, category = 
         const payload = {
             ingredients: ingredientsStr,
             target_price: finalPrice, 
-            primary_category: safePrimaryCategory,
-            secondary_category: safeSecondaryCategory, // Ici, on est sûr que ce n'est plus un nombre
+            primary_category: safePrimaryCategory || null,
+            secondary_category: safeSecondaryCategory || null, // Ici, on est sûr que ce n'est plus un nombre
             top_n: 20
         };
 
