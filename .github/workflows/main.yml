@@ -32,16 +32,16 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t myapp .
-        docker tag myapp:latest <docker-registry-name>.azurecr.io/myapp:latest  # Replace with your Azure Container Registry name
+        docker build -t myapp -f ./nlp_service/Dockerfile .  # Path to Dockerfile in nlp_service
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your ACR name here
 
     - name: Push Docker image to Azure Container Registry
       run: |
-        docker push <docker-registry-name>.azurecr.io/myapp:latest  # Replace with your Azure Container Registry name
+        docker push monacr123.azurecr.io/myapp:latest  # Push to your ACR
 
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: MonAppServiceName  # Your Azure Web App name
+        app-name: MonAppServiceName  # Replace with your Azure Web App name
         slot-name: production  # Assuming production deployment slot
-        images: <docker-registry-name>.azurecr.io/myapp:latest  # Replace with your Azure Container Registry name
+        images: monacr123.azurecr.io/myapp:latest  # Use your ACR image name
