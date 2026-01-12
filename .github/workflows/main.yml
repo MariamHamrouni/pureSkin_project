@@ -36,6 +36,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Log in to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: monacr123.azurecr.io  # Your ACR name
+        username: ${{ secrets.AZURE_USERNAME }}  # If you're using ACR username/password
+        password: ${{ secrets.AZURE_PASSWORD }}
 
     - name: Build Docker image
       run: |
@@ -49,6 +55,6 @@ jobs:
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: MonAppServiceName  # Your Azure Web App name here
+        app-name: MonAppServiceName  # Your Azure Web App name
         slot-name: production  # Assuming production deployment slot
         images: monacr123.azurecr.io/myapp:latest  # Use your ACR image name
