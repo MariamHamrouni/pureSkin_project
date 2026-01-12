@@ -32,9 +32,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        cd nlp_service  # Move to the nlp_service directory
-        docker build -t myapp .  # Dockerfile should be in the nlp_service folder, no need to specify the -f flag if it's in the current directory
-        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your Azure Container Registry name here
+        docker build -f ./nlp_service/Dockerfile -t myapp .  # Use the explicit path for Dockerfile
+        docker tag myapp:latest monacr123.azurecr.io/myapp:latest  # Use your Azure Container Registry name
 
 
     - name: Push Docker image to Azure Container Registry
