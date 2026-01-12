@@ -30,18 +30,19 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # Azure login step for ACR
+    # Log in to Azure using the Service Principal credentials
     - name: Log in to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    # Log in to Azure Container Registry (ACR)
     - name: Log in to Azure Container Registry
       uses: azure/docker-login@v1
       with:
-        login-server: monacr123.azurecr.io  # Your ACR name
-        username: ${{ secrets.AZURE_USERNAME }}  # If you're using ACR username/password
-        password: ${{ secrets.AZURE_PASSWORD }}  # If you're using ACR username/password
+        login-server: monacr123.azurecr.io  # Your ACR login server
+        username: ${{ secrets.AZURE_USERNAME }}  # ACR Username (login server)
+        password: ${{ secrets.AZURE_PASSWORD }}  # ACR Password (Access key)
 
     - name: Build Docker image
       run: |
